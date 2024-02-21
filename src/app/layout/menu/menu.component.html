@@ -1,0 +1,19 @@
+<button color="primary" mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item
+          (click)="themeService.changeDark()">
+    {{!(themeService.$theme | async)?.isDark ? 'Enable Dark' : 'Disabled Dark'}}
+  </button>
+  <ng-container *ngFor="let color of colors">
+    <button mat-menu-item
+            (click)="themeService.changeColorPrimary(color)">
+      {{color}}
+    </button>
+  </ng-container>
+  <button mat-menu-item
+          (click)="loginService.removeToken(); exit()">
+    Exit
+  </button>
+</mat-menu>
